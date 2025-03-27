@@ -21,13 +21,20 @@ const ContextProvider = ({ children }: Props) => {
     }, 75 * index);
   };
 
-  const onSent = async () => {
+  const onSent = async (prompt?: string) => {
     try {
       setResultData('');
       setLoading(true);
       setShowResult(true);
-      setRecentPrompt(input);
-      const response = await run(input);
+      let response = '';
+      if (prompt !== undefined) {
+        response = await run(prompt);
+        setRecentPrompt(prompt);
+      } else {
+        setPrevPrompts([...prevPrompts, input]);
+        setRecentPrompt(input);
+        response = await run(input);
+      }
       const responses = response.split('**');
       let newResponse = '';
       for (let i = 0; i < responses.length; i++) {
@@ -39,7 +46,7 @@ const ContextProvider = ({ children }: Props) => {
       }
 
       const newResponse2 = newResponse.split('*').join('<br/>');
-      let newResponseArray = newResponse2.split(' ');
+      const newResponseArray = newResponse2.split(' ');
       for (let i = 0; i < newResponseArray.length; i++) {
         const nextWord = newResponseArray[i];
         dealyPara(i, nextWord + ' ');
