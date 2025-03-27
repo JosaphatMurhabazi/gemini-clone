@@ -1,7 +1,27 @@
 import { createContext, useState } from 'react';
 import run from '../config/gemini';
 
-export const Context = createContext(null);
+interface ContextType {
+  prevPrompts: string[];
+  setPrevPrompts: React.Dispatch<React.SetStateAction<string[]>>;
+  recentPrompt: string;
+  setRecentPrompt: React.Dispatch<React.SetStateAction<string>>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
+
+  onSent: (prompt?: string) => Promise<void>;
+  newChat: () => void;
+
+  showResult: boolean;
+  setShowResult: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+
+  resultData: string;
+  setResultData: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Context = createContext<ContextType>({} as ContextType);
 
 interface Props {
   children: React.ReactNode;
