@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import { assets } from '../../assets/assets';
+import store from '../../store';
 import './Main.css';
-import { Context } from '../../context/Context';
 
 const Main = () => {
   const {
@@ -12,7 +11,7 @@ const Main = () => {
     resultData,
     setInput,
     input,
-  } = useContext(Context);
+  } = store();
   return (
     <div className="main">
       <div className="nav">
