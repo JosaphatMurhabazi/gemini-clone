@@ -1,54 +1,57 @@
-# React + TypeScript + Vite
+# Gemini Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gemini Clone is a cutting-edge interactive application that leverages Google's Generative AI and zustand to provide dynamic and insightful prompt handling. It offers a responsive user interface, robust state management, and seamless API integration to enhance user experiences.
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## AI Integration
 
-## Expanding the ESLint configuration
+- Uses Google's gemini-2.0-flash generative model for prompt-based responses.
+- Configurable model settings (e.g., temperature, topP, topK) to fine-tune outputs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## State Management
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Powered by zustand for managing user inputs, results, and application states.
+- Handles states such as recentPrompt, prevPrompts, isLoading, and more.
+
+## User Interface
+
+### Main Component:
+
+- Displays input fields and result data dynamically.
+- Includes loader animations for enhanced user interaction.
+
+### Sidebar Component:
+
+- Expandable navigation bar with features like recent prompts, help, activity, and settings.
+
+## Installation
+
+To get started with Gemini Clone:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/JosaphatMurhabazi/gemini-clone.git
+cd gemini-clone
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+3. Set up environment variables:
+
+- Create a .env file in the root directory.
+- Add your Google Generative AI API key:
+  VITE_GEMINI_API_KEY=your-api-key
+
+## Run the Application
+
+### Start the development server:
+
+```bash
+npm run dev
 ```
