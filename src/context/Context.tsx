@@ -15,6 +15,12 @@ const ContextProvider = ({ children }: Props) => {
   const [isLoading, setLoading] = useState(false);
   const [resultData, setResultData] = useState('');
 
+  const dealyPara = (index: number, nextWord: string) => {
+    setTimeout(() => {
+      setResultData((prev) => prev + nextWord);
+    }, 75 * index);
+  };
+
   const onSent = async () => {
     try {
       setResultData('');
@@ -22,9 +28,24 @@ const ContextProvider = ({ children }: Props) => {
       setShowResult(true);
       setRecentPrompt(input);
       const response = await run(input);
-      setResultData(response);
+      const responses = response.split('**');
+      let newResponse = '';
+      for (let i = 0; i < responses.length; i++) {
+        if (i === 0 || i % 2 !== 1) {
+          newResponse += responses[i];
+        } else {
+          newResponse += '<b>' + responses[i] + '</b>';
+        }
+      }
+
+      const newResponse2 = newResponse.split('*').join('<br/>');
+      let newResponseArray = newResponse2.split(' ');
+      for (let i = 0; i < newResponseArray.length; i++) {
+        const nextWord = newResponseArray[i];
+        dealyPara(i, nextWord + ' ');
+      }
+
       setPrevPrompts([...prevPrompts, input]);
-      setLoading(false);
       setInput('');
     } catch (error) {
       console.error('Error :', error);
