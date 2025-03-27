@@ -7,7 +7,6 @@ Gemini Clone is a cutting-edge interactive application that leverages Google's G
 ## AI Integration
 
 - Uses Google's gemini-2.0-flash generative model for prompt-based responses.
-- Configurable model settings (e.g., temperature, topP, topK) to fine-tune outputs.
 
 ## State Management
 
